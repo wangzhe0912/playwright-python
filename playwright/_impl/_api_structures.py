@@ -221,6 +221,12 @@ class FrameExpectResult(TypedDict):
     errorMessage: Optional[str]
 
 
+AriaSnapshotMode = Literal[
+    "expect",
+    "ai",
+]
+
+
 AriaRole = Literal[
     "alert",
     "alertdialog",

@@ -224,7 +224,7 @@ import datetime
 from typing import Literal
 
 
-from playwright._impl._api_structures import Cookie, SetCookieParam, FloatRect, FilePayload, Geolocation, HttpCredentials, PdfMargins, Position, ProxySettings, ResourceTiming, SourceLocation, StorageState, ClientCertificate, ViewportSize, RemoteAddr, SecurityDetails, RequestSizes, NameValue, TracingGroupLocation
+from playwright._impl._api_structures import AriaSnapshotMode, Cookie, SetCookieParam, FloatRect, FilePayload, Geolocation, HttpCredentials, PdfMargins, Position, ProxySettings, ResourceTiming, SourceLocation, StorageState, ClientCertificate, ViewportSize, RemoteAddr, SecurityDetails, RequestSizes, NameValue, TracingGroupLocation
 from playwright._impl._browser import Browser as BrowserImpl
 from playwright._impl._browser_context import BrowserContext as BrowserContextImpl
 from playwright._impl._browser_type import BrowserType as BrowserTypeImpl

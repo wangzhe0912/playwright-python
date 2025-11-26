@@ -33,6 +33,7 @@ from typing import (
 
 from playwright._impl._api_structures import (
     AriaRole,
+    AriaSnapshotMode,
     FilePayload,
     FloatRect,
     FrameExpectOptions,
@@ -564,7 +565,11 @@ class Locator:
             ),
         )
 
-    async def aria_snapshot(self, timeout: float = None) -> str:
+    async def aria_snapshot(
+        self,
+        timeout: float = None,
+        mode: AriaSnapshotMode = None,
+    ) -> str:
         return await self._frame._channel.send(
             "ariaSnapshot",
             self._frame._timeout,
