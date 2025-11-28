@@ -141,9 +141,20 @@ create_driver_zip() {
         cp -r "$JS_CORE_DIR/types" "$TEMP_DIR/package/"
     fi
     
-    # 复制 node 可执行文件（如果存在于 Python driver 目录）
-    if [ -f "$PYTHON_DRIVER_DIR/node" ]; then
+    # 复制目标平台对应的 node 可执行文件（关键！修复跨平台构建问题）
+    # 根据 ZIP_NAME 选择正确的平台目录
+    local PLATFORM_DIR="$PYTHON_PW_ROOT/driver/$ZIP_NAME"
+    if [ -f "$PLATFORM_DIR/node" ]; then
+        echo -e "      使用平台目录 ${BLUE}$PLATFORM_DIR${NC} 中的 node"
+        cp "$PLATFORM_DIR/node" "$TEMP_DIR/"
+    elif [ -f "$PYTHON_DRIVER_DIR/node" ]; then
+        echo -e "      ${YELLOW}警告: 未找到 $ZIP_NAME 平台的 node，使用本地 node（可能导致跨平台问题）${NC}"
         cp "$PYTHON_DRIVER_DIR/node" "$TEMP_DIR/"
+    else
+        echo -e "      ${RED}错误: 未找到 node 可执行文件！${NC}"
+        echo -e "      请确保 driver/$ZIP_NAME/node 存在"
+        rm -rf "$TEMP_DIR"
+        exit 1
     fi
     
     # 创建 zip 文件
